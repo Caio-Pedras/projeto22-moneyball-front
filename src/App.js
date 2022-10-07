@@ -4,7 +4,7 @@ import React from "react";
 // import SignUpPage from "./pages/SignUpPage";
 import MainPage from "./pages/MainPage";
 import "./assets/css/reset.css";
-// import "./assets/css/style.css";
+import "./assets/css/style.css";
 import UserContextProvider from "./userContext/UserContextProvider.js";
 
 export default function App() {
