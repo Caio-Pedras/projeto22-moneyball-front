@@ -6,7 +6,7 @@ import {
   MenuRowWrapper,
 } from "./styles";
 
-export default function MenuRow({ flag, country, LEAGUES }) {
+export default function MenuRow({ flag, country, LEAGUES, selectLeague }) {
   const filteredLeagues = LEAGUES?.filter(
     (league) => league.country.name == country
   ).sort((leagueA, leagueB) => {
@@ -26,7 +26,7 @@ export default function MenuRow({ flag, country, LEAGUES }) {
       </MenuItem>
       <LeagueSelector display={displayLeagueSelector}>
         {filteredLeagues?.map((league) => (
-          <LeagueWrapper>
+          <LeagueWrapper onClick={() => selectLeague(league.league.id)}>
             <img src={league.league.logo} alt={`${league.league.name} logo`} />
             <p>{league.league.name}</p>
           </LeagueWrapper>
