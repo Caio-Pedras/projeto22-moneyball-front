@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../userContext/userContext";
-import { Container, TeamHeader, TeamWrapper } from "./styles";
+import { Container, PlayerBox, TeamHeader, TeamWrapper } from "./styles";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import PlayerWrapper from "./PlayerWrapper";
+import PlayerInfo from "./PlayerInfo";
 export default function TeamPage() {
   const { URL, API_KEY } = useContext(UserContext);
   const { teamId } = useParams();
@@ -208,6 +209,7 @@ export default function TeamPage() {
       },
     ],
   });
+  const [isPlayerSelected, setIsPlayerSelected] = useState(false);
   // useEffect(() => getTeamPlayers(), []);
   function getTeamPlayers() {
     const config = {
@@ -230,18 +232,27 @@ export default function TeamPage() {
   }
   return (
     <Container>
-      <TeamWrapper>
+      <TeamWrapper selected={isPlayerSelected}>
         <TeamHeader>
           <img
             src={apiResult?.team.logo}
             alt={`${apiResult?.team.name} logo`}
+            onClick={() => console.log(isPlayerSelected)}
           />
           <h1>{apiResult?.team.name}</h1>
         </TeamHeader>
         {apiResult?.players.map((player) => (
-          <PlayerWrapper player={player} key={player.id} />
+          <PlayerWrapper
+            setIsPlayerSelected={setIsPlayerSelected}
+            player={player}
+            key={player.id}
+          />
         ))}
       </TeamWrapper>
+      <PlayerInfo
+        isPlayerSelected={isPlayerSelected}
+        setIsPlayerSelected={setIsPlayerSelected}
+      />
     </Container>
   );
 }
