@@ -26,7 +26,7 @@ export default function SignUpPage() {
 
     response
       .then(() => {
-        setTimeout(() => navigate("/login"), 2600);
+        setTimeout(() => navigate("/"), 2600);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -124,7 +124,7 @@ export default function SignUpPage() {
             )}
           </Button>
         </Form>
-        <Link to="/login">Switch back to log in</Link>
+        <Link to="/">Switch back to log in</Link>
       </RightSize>
     </SignUpBody>
   );
