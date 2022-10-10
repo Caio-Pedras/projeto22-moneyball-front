@@ -17,15 +17,13 @@ import Swal from "sweetalert2";
 import { UserContext } from "../../userContext/userContext";
 
 export default function Signin() {
-  const URL = "http://localhost:5000";
-
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
   const [enableButton, setEnableButton] = useState(true);
-  const { userToken, setUserToken } = useContext(UserContext);
+  const { userToken, setUserToken, AUTH_URL } = useContext(UserContext);
 
   useEffect(() => {
     if (
@@ -34,7 +32,7 @@ export default function Signin() {
       userToken !== "null" &&
       localStorage.getItem("token")
     ) {
-      navigate("/");
+      navigate("/main");
     }
 
     // eslint-disable-next-line
@@ -45,12 +43,12 @@ export default function Signin() {
     if (!enableButton) return;
 
     setEnableButton(false);
-    const response = axios.post(`${URL}/signin`, loginData);
+    const response = axios.post(`${AUTH_URL}/signin`, loginData);
 
     response
       .then(({ data }) => {
         setUserToken(data.token);
-        navigate("/");
+        navigate("/main");
       })
       .catch((err) => {
         Swal.fire({

@@ -1,14 +1,17 @@
 import { SignUpBody, LeftSize, RightSize, Title, Text, Form } from "./styles";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { UserContext } from "../../userContext/userContext";
 
 export default function SignUpPage() {
-  const URL = "http://localhost:5000"; // alterar pra context depois
+  // alterar pra context depois
+  const { AUTH_URL } = useContext(UserContext);
+
   const navigate = useNavigate();
   const [cadastroData, setCadastroData] = useState({
     email: "",
@@ -22,7 +25,7 @@ export default function SignUpPage() {
     if (!enableButton) return;
 
     setEnableButton(false);
-    const response = axios.post(`${URL}/signup`, cadastroData);
+    const response = axios.post(`${AUTH_URL}/signup`, cadastroData);
 
     response
       .then(() => {
