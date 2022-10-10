@@ -52,14 +52,20 @@ export const TeamHeader = styled.div`
   border-radius: 20px;
   display: flex;
   align-items: center;
-  column-gap: 20px;
+  justify-content: space-between;
   background-color: #0d1724;
   padding: 20px;
   position: sticky;
   top: 0;
   z-index: 1;
+  color: white;
+  font-size: 50px;
+`;
+export const TeamHeaderInfo = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
   h1 {
-    color: white;
     font-weight: 700;
     font-size: 30px;
   }
@@ -68,6 +74,7 @@ export const TeamHeader = styled.div`
     height: 80px;
   }
 `;
+
 export const PlayerCard = styled.div`
   text-align: center;
   width: 200px;
